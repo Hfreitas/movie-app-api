@@ -1,8 +1,5 @@
 const jwt = require('jsonwebtoken');
 const { jwtConfig, key } = require('./config');
-const { generateError } = require('../../utils');
-
-const errorCode = 401;
 
 module.exports = async (req, res, next) => {
   try {
@@ -12,6 +9,6 @@ module.exports = async (req, res, next) => {
 
     return res.status(200).json({ token: loginToken });
   } catch (error) {
-    return next(generateError(errorCode, error));
+    return next(error);
   }
 };
