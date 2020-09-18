@@ -7,9 +7,13 @@ const movieApi = axios.create({
   headers: { Accept: 'application/json' },
 });
 
-const searchMovieByTitle = async (title) => {
+const searchMovieByTitle = async (title, type = '', page = 1) => {
   try {
-    const response = await movieApi.get(`s=${title}&apikey=${API_KEY}`);
+    const response = type
+      ? await movieApi.get(
+          `s=${title}&type=${type}&r=json&page=${page}&apikey=${API_KEY}`,
+        )
+      : await movieApi.get(`s=${title}&r=json&apikey=${API_KEY}`);
     const { data } = response;
     return data;
   } catch (error) {
@@ -19,7 +23,7 @@ const searchMovieByTitle = async (title) => {
 
 const searchMovieById = async (id) => {
   try {
-    const response = await movieApi.get(`i=${id}&apikey=${API_KEY}`);
+    const response = await movieApi.get(`i=${id}&r=json&apikey=${API_KEY}`);
     const { data } = response;
     return data;
   } catch (error) {
