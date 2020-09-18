@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "movie catalog app api",
   "main": "index.js",
+  "scripts": {
+    "debug": "nodemon index.js"
+  },
   "author": "Hebert Freitas",
   "license": "MIT",
   "dependencies": {
