@@ -7,7 +7,7 @@ const encryptPassword = async (password) => bcrypt.hash(password, saltRounds);
 
 const checkUserData = async (param = '', paramValue) => {
   const data = await user.findUser(param, paramValue);
-  return data ? data[param] : null;
+  return data[param] ? data : null;
 };
 
 const create = async ( name, email, password ) => {
@@ -25,4 +25,5 @@ const create = async ( name, email, password ) => {
 
 module.exports = {
   create,
+  checkUserData,
 };
