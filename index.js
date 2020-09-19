@@ -2,16 +2,27 @@ const express = require('express');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 
+const controllers = require('./controllers');
+
 const app = express();
 
 app.use(bodyParser.json());
-const { PORT = 3000 } = process.env;
+app.use('/media', controllers.media);
 
 app.get('/', (_req, res) =>
-  res.send(
-    `<h1 style="color:blue;text-align:center;">Greetings! Lovers of Seventh Art!</h1>`,
-  ),
+  res.status(200).json({
+    message: 'Greetings! Lovers of Seventh Art!',
+  }),
 );
+
+// eslint-disable-next-line no-unused-vars
+app.use((err, _req, res, _next) =>
+  err.payload
+    ? res.status(err.status).json(err.payload)
+    : res.status(500).json({ message: 'Internal error' }),
+);
+
+const { PORT = 3001 } = process.env;
 
 const { log } = console;
 
