@@ -7,7 +7,7 @@ const controllers = require('./controllers');
 const app = express();
 
 app.use(bodyParser.json());
-app.use('/movies', controllers.movies);
+app.use('/media', controllers.media);
 
 app.get('/', (_req, res) =>
   res.status(200).json({

@@ -1,5 +1,5 @@
-const moviesController = require('./moviesController');
+const mediaController = require('./mediaController');
 
 module.exports = {
-  movies: moviesController,
+  media: mediaController,
 };

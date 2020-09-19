@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken');
+// falta função de consulta a usuario no service
 const { searchUser } = require('../../services');
 const { key } = require('./config');
 const { generateError } = require('../../utils');
-// falta função de consulta a usuario no service
 
 const errorCode = 401;
 
