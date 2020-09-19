@@ -13,6 +13,19 @@ const registryUser = async (req, res, next) => {
   }
 };
 
+const userLogin = async (req, res, next) => {
+  try {
+    const { token } = req;
+
+    if (!token) throw new Error();
+
+    return res.status(200).json({ message: 'user is logged', token });
+  } catch (error) {
+    return next(error);
+  }
+};
+
 module.exports = {
   registryUser,
+  userLogin,
 };
