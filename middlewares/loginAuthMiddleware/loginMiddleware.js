@@ -1,14 +1,29 @@
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 const { jwtConfig, key } = require('./config');
+const { checkUserData } = require('../../services/userServices');
+const { generateError } = require('../../utils');
+
+const errorCode = 401;
 
 module.exports = async (req, res, next) => {
   try {
-    const { data } = req;
+    const { email, password } = req.body;
 
-    const loginToken = jwt.sign({ data }, key, jwtConfig);
+    const user = await checkUserData('email', email);
 
-    return res.status(200).json({ token: loginToken });
+    const checkPassword = await bcrypt.compare(password, user.password);
+
+    if (!user) throw new Error('user not found');
+    if (!checkPassword) throw new Error('wrong password');
+
+    const { password, ...userData } = user;
+    const loginToken = jwt.sign({ data: userData }, key, jwtConfig);
+
+    req.token = loginToken;
+
+    return next();
   } catch (error) {
-    return next(error);
+    return next(generateError(errorCode, error));
   }
 };
