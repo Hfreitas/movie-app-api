@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken');
-// falta função de consulta a usuario no service
-const { searchUser } = require('../../services');
+const { checkUserData } = require('../../services/userServices');
 const { key } = require('./config');
 const { generateError } = require('../../utils');
 
@@ -15,13 +14,11 @@ module.exports = (required = true) => async (req, _res, next) => {
 
     const decodedInfo = jwt.verify(authorization, key);
     const { _id } = decodedInfo.data;
-    const userData = await searchUser(null, _id);
+    const userData = await checkUserData('_id', _id);
 
     if (!userData) throw new Error('invalid token');
 
-    const { password, ...user } = userData;
-
-    req.user = { ...user };
+    req.user = { ...userData };
     return next();
   } catch (error) {
     return next(generateError(errorCode, error));

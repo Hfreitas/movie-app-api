@@ -1,6 +1,8 @@
-const { searchMovieById, searchMovieByTitle } = require('./externalAPI');
+const { searchMovieById, searchMovieByTitle } = require('./APIServices');
+const { create } = require('./userServices');
 
 module.exports = {
-  APIById: searchMovieById,
-  APIByTitle: searchMovieByTitle,
+  mediaById: searchMovieById,
+  mediaByTitle: searchMovieByTitle,
+  addUser: create,
 };
