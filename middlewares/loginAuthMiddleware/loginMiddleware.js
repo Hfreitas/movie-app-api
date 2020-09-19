@@ -6,7 +6,7 @@ const { generateError } = require('../../utils');
 
 const errorCode = 401;
 
-module.exports = async (req, res, next) => {
+module.exports = async (req, _res, next) => {
   try {
     const { email, password } = req.body;
 
