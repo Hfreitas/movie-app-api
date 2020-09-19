@@ -1,8 +1,9 @@
 const { auth, login } = require('./loginAuthMiddleware');
-const { mediaSearch } = require('./validationMiddleware');
+const { schemas, validateSchema } = require('./validationMiddleware');
 
 module.exports = {
   auth,
   login,
-  validation: { mediaSearch },
+  validation: validateSchema,
+  schemas,
 };

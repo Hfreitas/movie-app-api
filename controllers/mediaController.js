@@ -1,11 +1,13 @@
 const { Router } = require('express');
 const routes = require('./routes');
-const { validation } = require('../middlewares');
+const { validation, schemas } = require('../middlewares');
 
-const movies = Router();
+const media = Router();
 
-movies.route('/').get(validation.mediaSearch, routes.searchByTitle);
+media
+  .route('/')
+  .get(validation(schemas.movieSearchSchema), routes.searchByTitle);
 
-movies.route('/:id').get(routes.searchByID);
+media.route('/:id').get(routes.searchByID);
 
-module.exports = movies;
+module.exports = media;

@@ -3,8 +3,9 @@ const { APIById, APIByTitle } = require('../../services');
 const getMoviesByTitle = async (req, res, next) => {
   try {
     const { title, type, page } = req.body;
-    const moviesData = await APIByTitle(title, type, page);
-    return res.status(200).json({ movies: moviesData });
+
+    const mediaData = await APIByTitle(title, type, page);
+    return res.status(200).json({ [type]: mediaData || 'Media not found' });
   } catch (error) {
     return next(error);
   }
