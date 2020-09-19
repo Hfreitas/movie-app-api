@@ -33,6 +33,23 @@ const schemas = {
       )
       .required(),
   }),
+  loginSchema: Joi.object({
+    email: Joi.string()
+      .email({
+        minDomainSegments: 2,
+        tlds: {
+          allow: ['com', 'net'],
+        },
+      })
+      .required(),
+    password: Joi.string()
+      .pattern(
+        new RegExp(
+          '^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{8,10}$',
+        ),
+      )
+      .required(),
+  }),
 };
 
 const validateSchema = (schema) => async (req, _res, next) => {
