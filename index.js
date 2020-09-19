@@ -7,7 +7,9 @@ const controllers = require('./controllers');
 const app = express();
 
 app.use(bodyParser.json());
+
 app.use('/media', controllers.media);
+app.use('/users', controllers.user);
 
 app.get('/', (_req, res) =>
   res.status(200).json({
