@@ -8,11 +8,11 @@ const errorCode = 401;
 
 module.exports = async (req, _res, next) => {
   try {
-    const { email, password } = req.body;
+    const { body } = req;
 
-    const user = await checkUserData('email', email);
+    const user = await checkUserData('email', body.email);
 
-    const checkPassword = await bcrypt.compare(password, user.password);
+    const checkPassword = await bcrypt.compare(body.password, user.password);
 
     if (!user) throw new Error('user not found');
     if (!checkPassword) throw new Error('wrong password');
