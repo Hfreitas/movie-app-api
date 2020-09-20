@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const helmet = require('helmet');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 
@@ -8,6 +9,7 @@ const controllers = require('./controllers');
 const app = express();
 
 app.use(cors());
+app.use(helmet());
 app.use(bodyParser.json());
 
 app.use('/media', controllers.media);
