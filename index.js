@@ -28,7 +28,7 @@ app.use((err, _req, res, _next) =>
     : res.status(500).json({ message: 'Internal error' }),
 );
 
-const { PORT = 3001 } = process.env;
+const { PORT } = process.env;
 
 const { log } = console;
 
