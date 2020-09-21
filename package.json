@@ -1,10 +1,14 @@
 {
   "name": "movie-app-api",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "movie catalog app api",
-  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Hfreitas/movie-app-api"
+  },
+  "main": "server/index.js",
   "scripts": {
-    "debug": "nodemon server"
+    "dev": "nodemon server"
   },
   "author": "Hebert Freitas",
   "license": "MIT",
@@ -29,5 +33,6 @@
     "eslint-plugin-promise": "^4.2.1",
     "nodemon": "^2.0.4",
     "prettier": "^2.1.2"
-  }
+  },
+  "private":"true"
 }
