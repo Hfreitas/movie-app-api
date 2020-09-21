@@ -4,7 +4,7 @@
   "description": "movie catalog app api",
   "main": "index.js",
   "scripts": {
-    "debug": "nodemon index.js"
+    "debug": "nodemon server"
   },
   "author": "Hebert Freitas",
   "license": "MIT",
