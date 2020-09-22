@@ -1,13 +1,19 @@
 const express = require('express');
+const cors = require('cors');
+const helmet = require('helmet');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 
-const controllers = require('./controllers');
+const controllers = require('../controllers');
 
 const app = express();
 
+app.use(cors());
+app.use(helmet());
 app.use(bodyParser.json());
+
 app.use('/media', controllers.media);
+app.use('/users', controllers.user);
 
 app.get('/', (_req, res) =>
   res.status(200).json({
@@ -22,8 +28,4 @@ app.use((err, _req, res, _next) =>
     : res.status(500).json({ message: 'Internal error' }),
 );
 
-const { PORT = 3001 } = process.env;
-
-const { log } = console;
-
-app.listen(PORT, () => log(`Listening on ${PORT} port!`));
+module.exports = app;
